@@ -1,6 +1,6 @@
 ---
 name: foreign-assets-itr-reporting
-description: End-to-end automation for Indian Income Tax Return (ITR) filings covering Schedule FA (Foreign Assets Table A3), Form 67 (Double Taxation Relief u/s 90), and RSU / foreign share Capital Gains computations with multi-agent verification and Rule 115 forex compliance.
+description: End-to-end automation for Indian Income Tax Return (ITR) filings covering Schedule FA (Foreign Assets Table A3), Form 67 (Double Taxation Relief u/s 90), and RSU / foreign share Capital Gains computations with multi-agent verification and Rule 115 forex compliance. Activate via command `/foreign-assets` or `/foreign-assets-itr-reporting`.
 ---
 
 # Foreign Assets, Form 67 & RSU Capital Gains Skill
@@ -9,14 +9,36 @@ This skill acts as an automated, multi-agent Chartered Accountancy workstation d
 
 ---
 
-## 1. Quick Start Guide for Non-Coders
+## 1. Skill Activation & Command Reference
 
-You do not need programming knowledge to run or customize this skill. Simply ensure the required documents are placed in the client folder and issue the trigger prompt to your Antigravity agent.
+You can activate this skill instantly in any client folder using a simple skill command instead of typing a long prompt.
 
-### What Files to Place in the Client Folder:
-1. **Broker Statement / Equity Plan Summary**: PDF or Excel from Fidelity NetBenefits, Morgan Stanley Shareworks, E*TRADE, Charles Schwab, Computershare, etc., showing vesting tranches, vest FMVs, and stock sales.
-2. **Form 1042-S / Foreign Tax Statement**: Reporting gross US dividends and federal tax withheld (Chapter 3/4 withholding).
-3. **SBI TT Rates CSV**: Historical SBI Telegraphic Transfer (TT) rates file (e.g., `SBI_REFERENCE_RATES_USD.csv` or `SBI_REFERENCE_RATES_USD (1).csv`).
+### Activation Commands:
+- **Default Execution**:
+  ```text
+  /foreign-assets
+  ```
+  *(Alias: `/foreign-assets-itr-reporting`)*
+
+- **With Custom Parameters**:
+  ```text
+  /foreign-assets --fy 2025-26 --period FINANCIAL_YEAR
+  /foreign-assets --fy 2024-25 --period CALENDAR_YEAR --currency USD
+  ```
+
+- **Natural Language Trigger**:
+  Simply type: `"Run foreign assets skill for this client"` or `"Process Schedule FA, Form 67 and RSU gains"`.
+
+### What the Agent Does Automatically Upon Receiving the Command:
+1. Scans the active client folder for broker statements (Fidelity, Morgan Stanley, etc.), Form 1042-S, and SBI TT rates.
+2. Deploys the 3-Agent Collaborative Pipeline (Ingestion -> Computation -> Senior CA Audit).
+3. Directly executes all computations and populates `Form-67.xlsx`, `RSU Gain.xlsx`, and `Schedule FA.xlsx` preserving live Excel formulas.
+4. Runs automated cross-schedule reconciliations and generates an ICAI-compliant audit report without waiting for approval.
+
+### Files Required in the Client Folder:
+1. **Broker Statement / Equity Plan Summary**: PDF or Excel showing vesting tranches, vest FMVs, and stock sales.
+2. **Form 1042-S / Foreign Tax Statement**: Reporting gross US dividends and federal tax withheld.
+3. **SBI TT Rates CSV**: `SBI_REFERENCE_RATES_USD.csv` (or `SBI_REFERENCE_RATES_USD (1).csv`).
 4. **Prescribed Excel Templates**:
    - `Form-67.xlsx` (or `Form-67_template.xlsx`)
    - `RSU Gain.xlsx` (or `RSU-CG-Calculations_template.xlsx`)

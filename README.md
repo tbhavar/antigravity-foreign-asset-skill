@@ -62,16 +62,30 @@ Place client tax documents in their working folder:
 - Exchange rates file (`SBI_REFERENCE_RATES_USD.csv`)
 - Target Excel templates (`Form-67.xlsx`, `RSU Gain.xlsx`, `Schedule FA.xlsx`)
 
-### 3. Trigger Prompt
-Execute the skill with the prompt:
+### 3. Skill Activation Command
+Instead of typing lengthy instructions, activate the entire workflow using a simple slash command:
+
 ```text
-Please act as an expert chartered accountant, having deep knowledge in income tax,
-specifically regarding foreign assets, holdings, declarations, and double taxation
-avoidance agreements, like claiming the benefit of DTAA by filing Form 67. And also
-expert in calculating any gains arising on transfer of these assets. Since you have
-this knowledge, I want you to compute all the Schedule FA related disclosure for this client.
-Please directly execute your plan and don't wait for my approval.
+/foreign-assets
 ```
+*(Or use the full identifier: `/foreign-assets-itr-reporting`)*
+
+#### Advanced Command Options:
+You can pass custom parameters directly with the command:
+```text
+# Specify custom Financial Year and Period Mode
+/foreign-assets --fy 2025-26 --period FINANCIAL_YEAR
+
+# Calendar Year reporting for foreign company accounting period
+/foreign-assets --fy 2024-25 --period CALENDAR_YEAR
+
+# Custom foreign currency
+/foreign-assets --currency EUR
+```
+
+#### Natural Language Trigger:
+You can also invoke it naturally by typing:
+> *"Run foreign assets skill for this client"* or *"Generate Schedule FA, Form 67 and RSU Gain reports"*.
 
 ---
 
